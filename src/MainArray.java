@@ -1,11 +1,12 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * Interactive test for ArrayStorage implementation
  * (just run, no need to understand)
- * проверка отправки
  */
 public class MainArray {
     private final static ArrayStorage ARRAY_STORAGE = new ArrayStorage();
@@ -34,12 +35,15 @@ public class MainArray {
                 case "save":
                     r = new Resume();
                     r.uuid = uuid;
+                    //
+                    // System.out.println("Print r.uuid = "+r.uuid);
+                    //System.out.println("Print ARRAY_STORAGE.getAll() = " + ARRAY_STORAGE.save(r););
                     ARRAY_STORAGE.save(r);
                     printAll();
                     break;
                 case "delete":
                     ARRAY_STORAGE.delete(uuid);
-                    printAll();
+                    //printAll();
                     break;
                 case "get":
                     System.out.println(ARRAY_STORAGE.get(uuid));
@@ -59,7 +63,7 @@ public class MainArray {
 
     static void printAll() {
         Resume[] all = ARRAY_STORAGE.getAll();
-        System.out.println("----------------------------");
+        System.out.println("----------- В массиве "+all.length+" заполненных элемента-----------------");
         if (all.length == 0) {
             System.out.println("Empty");
         } else {
@@ -67,6 +71,6 @@ public class MainArray {
                 System.out.println(r);
             }
         }
-        System.out.println("----------------------------");
+        System.out.println("-----------Всего элементов в массиве " + ARRAY_STORAGE.getSumElem() + "-----------------");
     }
 }
