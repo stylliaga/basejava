@@ -46,11 +46,9 @@ public class ArrayStorage {
         // если совпадение найдено то переспрашиваем реально ли человек хочет удалить учейки
         int count = 0;
         for (int i = 0; i < size; i++) {
-            if (storage[i].uuid.equals(uuid))  {
+            if (storage[i].uuid == uuid)  {
                 count++;
-                size --;
-                System.out.println(ANSI_RED + storage[i] +" - [Удалено]" + ANSI_RESET);
-                storage[i] = new Resume();
+                //size --;
                 //System.out.println(storage[i].uuid);
             }
             /*
@@ -59,10 +57,10 @@ public class ArrayStorage {
                 storage[i] = null;
             }else{
                 System.out.println("Извините, указанное значение ячейки массива не найдено!");
-            }
-            */
+            }*/
+
         }
-       /* if(count > 1){
+       if(count > 1){
             System.out.println("Найдено "+ count +" совпадений.\nУдалить все или по одиночке?\nВведите A(все) / S(по одиночке)" +
                     " / N(отмена):");
             Scanner choosenWord = new Scanner(System.in);
@@ -75,21 +73,31 @@ public class ArrayStorage {
             deleteChoosen(uuid,choose);
         }else if (count == 0){
             System.out.println("Совпадений не найдено =(");
-        }*/
+        }
     }
     void deleteChoosen(String someUuid, String select){
         if (select.equals("A")){
             for(int i = 0; i < size; i++){
-                if (storage[i].uuid.equals(someUuid)) {
+                if (storage[i].uuid == someUuid) {
                     storage[i] = null;
+                    System.out.println(ANSI_RED + "\n##############\n" +
+                            "##[Удалено]###\n" +
+                            "##############" + ANSI_RESET);
+                    storage[i] = new Resume();
+
                     //size--;
                 }
             }
-            System.out.println("Все элементы удалены.");
+           // System.out.println("Все элементы удалены.");
         }else if (select.equals("S") || select.equals("Y")){
             for(int i = 0; i < size; i++){
-                if (storage[i].uuid.equals(someUuid)) {
+                if (storage[i].uuid == someUuid) {
                     storage[i] = null;
+                    System.out.println(ANSI_RED  +"\n##############\n" +
+                            "##[Удалено]###\n" +
+                            "##############" + ANSI_RESET);
+                    storage[i] = new Resume();
+
                     //size--;
                     break;
                 }

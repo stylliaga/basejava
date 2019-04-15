@@ -63,14 +63,16 @@ public class MainArray {
 
     static void printAll() {
         Resume[] all = ARRAY_STORAGE.getAll();
-        System.out.println("----------- В массиве "+all.length+" заполненных элемента-----------------");
+        System.out.println("\u001B[33m"+"----------- В массиве "+all.length+" заполненных элемента-----------------"+"\u001B[0m");
         if (all.length == 0) {
-            System.out.println("Empty");
+            System.out.println("\u001B[34m"+"Empty"+"\u001B[0m");
         } else {
             for (Resume r : all) {
-                System.out.println(r);
+                if(r == null) {
+                    }else{System.out.println("\u001B[34m" + r + "\u001B[0m");
+                }
             }
         }
-        System.out.println("-----------Всего элементов в массиве " + ARRAY_STORAGE.getSumElem() + "-----------------");
+        System.out.println("\u001B[33m"+"-----------Всего элементов в массиве " + ARRAY_STORAGE.getSumElem() + "-----------------"+"\u001B[0m");
     }
 }
