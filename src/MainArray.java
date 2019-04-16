@@ -1,7 +1,10 @@
+import com.sun.istack.internal.NotNull;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -30,7 +33,7 @@ public class MainArray {
                     printAll();
                     break;
                 case "size":
-                    System.out.println(ARRAY_STORAGE.size());
+                    System.out.println("\u001B[36m ##### [Количество заполненных ячеек в массиве: " + ARRAY_STORAGE.size() + " ] #####\u001B[0m");
                     break;
                 case "save":
                     r = new Resume();
@@ -43,10 +46,10 @@ public class MainArray {
                     break;
                 case "delete":
                     ARRAY_STORAGE.delete(uuid);
-                    //printAll();
+                    printAll();
                     break;
                 case "get":
-                    System.out.println(ARRAY_STORAGE.get(uuid));
+                    ARRAY_STORAGE.get(uuid);
                     break;
                 case "clear":
                     ARRAY_STORAGE.clear();
@@ -54,6 +57,8 @@ public class MainArray {
                     break;
                 case "exit":
                     return;
+                case "arra":
+                    ARRAY_STORAGE.arraV();
                 default:
                     System.out.println("Неверная команда.");
                     break;
@@ -63,16 +68,21 @@ public class MainArray {
 
     static void printAll() {
         Resume[] all = ARRAY_STORAGE.getAll();
-        System.out.println("\u001B[33m"+"----------- В массиве "+all.length+" заполненных элемента-----------------"+"\u001B[0m");
+        System.out.println(ARRAY_STORAGE.ANSI_YELLOW + "----------- [Заполненных ячеек: " + all.length + " ] -----------------"
+                         + ARRAY_STORAGE.ANSI_RESET);
         if (all.length == 0) {
-            System.out.println("\u001B[34m"+"Empty"+"\u001B[0m");
+            System.out.println(ARRAY_STORAGE.ANSI_BLUE + "Empty"
+                             + ARRAY_STORAGE.ANSI_RESET);
         } else {
             for (Resume r : all) {
-                if(r == null) {
-                    }else{System.out.println("\u001B[34m" + r + "\u001B[0m");
+                if(ARRAY_STORAGE.getAll() == null) {System.out.print("");}
+                else{
+                    System.out.println(ARRAY_STORAGE.ANSI_BLUE + r + ARRAY_STORAGE.ANSI_RESET);
                 }
             }
         }
-        System.out.println("\u001B[33m"+"-----------Всего элементов в массиве " + ARRAY_STORAGE.getSumElem() + "-----------------"+"\u001B[0m");
+        System.out.println(ARRAY_STORAGE.ANSI_YELLOW + "-----------[Ячеек в массиве: " + ARRAY_STORAGE.getSumElem()
+                          + ARRAY_STORAGE.ANSI_RESET + " ]-----------------"+"\u001B[0m");
     }
+
 }
