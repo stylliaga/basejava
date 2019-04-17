@@ -24,35 +24,50 @@ public class ArrayStorage {
     int size = 0;
     void clear() {
         Arrays.fill(storage,null);
-        System.out.println(ANSI_RED + "#######[Массив очищен!]#######" + ANSI_RESET);
+        System.out.println(ANSI_RED + "########### [Массив очищен!] ###########" + ANSI_RESET);
     }
 
     void save(Resume r) {
         if(r != null && size<storage.length){
             storage[size]=r;
             size++;
-            System.out.println(ANSI_GREEN + "#######[Сохранено]#######" + ANSI_RESET);
+            System.out.println(ANSI_GREEN + "########### [Сохранено] ###########" + ANSI_RESET);
+        }
+    }
+    void delete(String uuid){
+        int count = 0;
+        for (int i = 0; i < storage.length; i++){
+            if (storage[i] != null) {
+                if (storage[i].uuid == uuid) {
+                    storage[i] = null;
+                    size--;
+                    break;
+                }
+                count += 1;
+            }else{}
         }
     }
 
     Resume get(String uuid) {
         for (int i = 0; i < size; i++) {
-            if (storage[i].uuid == uuid) {
-                System.out.println(ANSI_BLUE + storage[i]+ ANSI_RESET);
-            }
+            try{
+                if (storage[i].uuid == uuid && storage[i].uuid != null) {
+                    System.out.println(ANSI_BLUE + storage[i].uuid + ANSI_RESET);
+                }
+            }catch(Exception e){}
         }
         return null;
     }
 
-    void delete(String uuid) {
+    void deleted(String uuid) {
         // создаем счетчик для того чтобы вывести сколько совпадений найдено по запросу на удаление
         // если совпадение найдено то переспрашиваем реально ли человек хочет удалить учейки
         int count = 0;
         for (int i = 0; i < size; i++) {
-            if (storage[i].uuid == uuid)  {
+            if (storage[i].uuid == uuid && storage[i].uuid != null)  {
                 count++;
                 //size --;
-                //System.out.println(storage[i].uuid);
+                System.out.println(storage[i].uuid);
             }
             /*
             if (storage[i].uuid == uuid) {
@@ -82,27 +97,31 @@ public class ArrayStorage {
         if (select.equals("A")){
             for(int i = 0; i < size; i++){
                 if (storage[i].uuid == someUuid) {
-                    //storage[i] = "";
-                    storage[i] = new Resume();
+                    storage[i] = null;
+                    //size--;
+                    //storage[i] = storage[i];
                 }
             }
-            System.out.println(ANSI_RED  +"\n###############\n" +
-                    "###[Удалено]###\n" +
-                    "###############" + ANSI_RESET);
+            System.out.println(ANSI_RED  +
+                  "\n#################################\n" +
+                    "########### [Удалено] ###########\n" +
+                    "#################################" + ANSI_RESET);
            // System.out.println("Все элементы удалены.");
            // Arrays.sort(storage);
         }else if (select.equals("S") || select.equals("Y")){
             for(int i = 0; i < size; i++){
                 if (storage[i].uuid == someUuid) {
-                    //storage[i] = null;
-                    storage[i] = new Resume();
+                    storage[i] = null;
+                    //size--;
+                    //storage[i] = storage[i];
                     break;
                 }
             }
             //Arrays.sort(storage);
-            System.out.println(ANSI_RED  +"\n###############\n" +
-                    "###[Удалено]###\n" +
-                    "###############" + ANSI_RESET);
+            System.out.println(ANSI_RED  +
+                  "\n#################################\n" +
+                    "########### [Удалено] ###########\n" +
+                    "#################################" + ANSI_RESET);
         }else if (select.equals("S")){}
         //System.out.println(select);
         return;
@@ -115,8 +134,8 @@ public class ArrayStorage {
 // здесь мы фильтруем хранилище и вытаскиваем только заполненные ячейки массива
         Resume[] alls = storage;
        // String[] strAlls = storage;
-        //alls = Arrays.stream(alls).filter(s -> (s != null)).toArray(Resume[]::new);
-        alls = Arrays.stream(alls).filter(Objects::nonNull).toArray(Resume[]::new);
+        alls = Arrays.stream(alls).filter(s -> (s != null)).toArray(Resume[]::new);
+        //alls = Arrays.stream(alls).filter(Objects::nonNull).toArray(Resume[]::new);
         return alls;
     }
 
@@ -149,8 +168,14 @@ public class ArrayStorage {
 
 // Returns an array with the same data but refits it to a new length
         array = Arrays.copyOf(refinedArray, count + 1);
-        System.out.println(Arrays.toString(storage));
+        //Arrays.sort(Resume[] array);
+        Resume[] origArray = Arrays.stream(storage).filter(s -> (s != null)).toArray(Resume[]::new);
+        Resume[] origArray2 = Arrays.stream(storage).filter(Objects::nonNull).toArray(Resume[]::new);
 
+        for (int i = 0; i < origArray.length; i++){
+
+            System.out.println(origArray[i]);
+        }
         /*Resume[] origArray = storage;
         int count = -1;
         for (int i = 0; i < storage.length; i++){
