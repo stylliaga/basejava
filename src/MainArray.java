@@ -57,8 +57,6 @@ public class MainArray {
                     break;
                 case "exit":
                     return;
-                case "arra":
-                    ARRAY_STORAGE.arraV();
                 default:
                     System.out.println("Неверная команда.");
                     break;
