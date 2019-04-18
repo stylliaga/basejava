@@ -1,11 +1,7 @@
-import com.sun.istack.internal.NotNull;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * Interactive test for ArrayStorage implementation
@@ -38,9 +34,6 @@ public class MainArray {
                 case "save":
                     r = new Resume();
                     r.uuid = uuid;
-                    //
-                    // System.out.println("Print r.uuid = "+r.uuid);
-                    //System.out.println("Print ARRAY_STORAGE.getAll() = " + ARRAY_STORAGE.save(r););
                     ARRAY_STORAGE.save(r);
                     printAll();
                     break;
@@ -67,20 +60,21 @@ public class MainArray {
     static void printAll() {
         Resume[] all = ARRAY_STORAGE.getAll();
         System.out.println(ARRAY_STORAGE.ANSI_YELLOW + "----------- [Заполненных ячеек: " + all.length + " ] -----------------"
-                         + ARRAY_STORAGE.ANSI_RESET);
+                + ARRAY_STORAGE.ANSI_RESET);
         if (all.length == 0) {
             System.out.println(ARRAY_STORAGE.ANSI_BLUE + "Empty"
-                             + ARRAY_STORAGE.ANSI_RESET);
+                    + ARRAY_STORAGE.ANSI_RESET);
         } else {
             for (Resume r : all) {
-                if(ARRAY_STORAGE.getAll() == null) {System.out.print("");}
-                else{
+                if (ARRAY_STORAGE.getAll() == null) {
+                    System.out.print("");
+                } else {
                     System.out.println(ARRAY_STORAGE.ANSI_BLUE + r + ARRAY_STORAGE.ANSI_RESET);
                 }
             }
         }
         System.out.println(ARRAY_STORAGE.ANSI_YELLOW + "-----------[Ячеек в массиве: " + ARRAY_STORAGE.getSumElem()
-                          + ARRAY_STORAGE.ANSI_RESET + " ]-----------------"+"\u001B[0m");
+                + ARRAY_STORAGE.ANSI_RESET + " ]-----------------" + "\u001B[0m");
     }
 
 }
