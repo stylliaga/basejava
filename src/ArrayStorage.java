@@ -45,7 +45,7 @@ public class ArrayStorage {
             if (storage[i] != null) {
                 try {
                     if (storage[i].uuid == uuid) {
-                        System.out.println(ANSI_BLUE + storage[i].uuid + ANSI_RESET);
+                        System.out.println(ANSI_BLUE + "Получен искомый элемент - " + storage[i].uuid + ANSI_RESET);
                     }
                 } catch (Exception e) {}
                 count++;
@@ -127,15 +127,6 @@ public class ArrayStorage {
         }else if (select.equals("S")){}
         //System.out.println(select);
         return;
-    }
-    void delMeth(int i, String someUuid) {
-            if (storage[i] != null) {
-                if (storage[i].uuid == someUuid) {
-                    storage[i] = null;
-                    size--;
-                }
-            } else {
-            }
     }
     /**
      * @return array, contains only Resumes in storage (without null)
