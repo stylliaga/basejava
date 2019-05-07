@@ -59,8 +59,6 @@ public class MainArray {
 
     static void printAll() {
         Resume[] all = ARRAY_STORAGE.getAll();
-        System.out.println(ARRAY_STORAGE.ANSI_YELLOW + "----------- [Заполненных ячеек: " + all.length + " ] -----------------"
-                + ARRAY_STORAGE.ANSI_RESET);
         if (all.length == 0) {
             System.out.println(ARRAY_STORAGE.ANSI_BLUE + "Empty"
                     + ARRAY_STORAGE.ANSI_RESET);
@@ -73,8 +71,6 @@ public class MainArray {
                 }
             }
         }
-        System.out.println(ARRAY_STORAGE.ANSI_YELLOW + "-----------[Ячеек в массиве: " + ARRAY_STORAGE.getSumElem()
-                + ARRAY_STORAGE.ANSI_RESET + " ]-----------------" + "\u001B[0m");
     }
 
 }
