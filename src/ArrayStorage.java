@@ -14,7 +14,7 @@ public class ArrayStorage {
     int size = 0;
 
     void clear() {
-        Arrays.fill(storage,(size-size), size, null);
+        Arrays.fill(storage,0, size, null);
     }
 
     void save(Resume r) {
@@ -36,14 +36,15 @@ public class ArrayStorage {
     void delete(String uuid) {
         int counter = 0;
         for (int i = 0; i < size; i++) {
-            if (storage[i].uuid.equals(uuid) || storage[i].uuid.equals(null)) {
+            if (storage[i].uuid.equals(uuid)) {
                 counter++;
                 storage[i] = null;
             }else if(counter > 0){
-                storage[i - counter] = storage[i];
+                storage[i - 1] = storage[i];
                 storage[i] = null;
             }
         }
+        size = size - 1;
     }
     /**
      * @return array, contains only Resumes in storage (without null)
@@ -56,13 +57,7 @@ public class ArrayStorage {
     }
 
     int size() {
-        int count = 0;
-        Resume[] alls = storage;
-        alls = Arrays.stream(alls).filter(s -> (s != null)).toArray(Resume[]::new);
-        for (int i = 0; i < alls.length; i++) {
-            count++;
-        }
-        return count;
+        return size;
     }
     /*------------------------------------------------------*/
 
