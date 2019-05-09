@@ -14,11 +14,7 @@ public class ArrayStorage {
     int size = 0;
 
     void clear() {
-        int c = 0;
-        int s = 1;
-        for(int i = 0; i < size; i++) {
-            Arrays.fill(storage,c, s++, null);
-        }
+        Arrays.fill(storage,(size-size), size, null);
     }
 
     void save(Resume r) {
@@ -28,27 +24,24 @@ public class ArrayStorage {
         }
     }
 
-    String get(String uuid) {
-       // boolean isElem = true;
-        for (int i = 0; i < size; i++) {
-            if (storage[i] != null) {
-                    if (storage[i].uuid.equals(uuid)) {
-                        return storage[i].uuid;
-                    }
+    Resume get(String uuid) {
+       for (int i = 0; i < size; i++) {
+            if (storage[i].uuid.equals(uuid)) {
+                return storage[i];
             }
-        }
+       }
         return null;
     }
 
     void delete(String uuid) {
-        // создаем счетчик для того чтобы вывести сколько совпадений найдено по запросу на удаление
-        // если совпадение найдено то переспрашиваем реально ли человек хочет удалить учейки
-        int count = 0;
+        int counter = 0;
         for (int i = 0; i < size; i++) {
-            if (storage[i] != null) {
-                if (storage[i].uuid == uuid) {
-                    storage[i] = null;
-                }
+            if (storage[i].uuid.equals(uuid) || storage[i].uuid.equals(null)) {
+                counter++;
+                storage[i] = null;
+            }else if(counter > 0){
+                storage[i - counter] = storage[i];
+                storage[i] = null;
             }
         }
     }
@@ -60,11 +53,6 @@ public class ArrayStorage {
         Resume[] alls = storage;
         alls = Arrays.stream(alls).filter(s -> (s != null)).toArray(Resume[]::new);
         return alls;
-    }
-
-    // для собственной проверки выводим общее количество ячеек
-    int getSumElem() {
-        return storage.length;
     }
 
     int size() {

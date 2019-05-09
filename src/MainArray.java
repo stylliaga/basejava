@@ -42,7 +42,7 @@ public class MainArray {
                     printAll();
                     break;
                 case "get":
-                    ARRAY_STORAGE.get(uuid);
+                    System.out.println(ARRAY_STORAGE.get(uuid));
                     break;
                 case "clear":
                     ARRAY_STORAGE.clear();
@@ -64,7 +64,7 @@ public class MainArray {
                     + ARRAY_STORAGE.ANSI_RESET);
         } else {
             for (Resume r : all) {
-                if (ARRAY_STORAGE.getAll() == null) {
+                if (ARRAY_STORAGE.getAll().equals(null)) {
                     System.out.print("");
                 } else {
                     System.out.println(ARRAY_STORAGE.ANSI_BLUE + r + ARRAY_STORAGE.ANSI_RESET);
