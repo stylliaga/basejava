@@ -38,13 +38,12 @@ public class ArrayStorage {
         for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(uuid)) {
                 counter++;
-                storage[i] = null;
+                size--;
             }else if(counter > 0){
                 storage[i - 1] = storage[i];
                 storage[i] = null;
             }
         }
-        size = size - 1;
     }
     /**
      * @return array, contains only Resumes in storage (without null)
